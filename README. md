@@ -1,1 +1,143 @@
+# 🛡️ Active Directory Cybersecurity Lab
+
+A **hands-on cybersecurity and IT infrastructure lab** simulating a small enterprise domain using Windows Server 2019 and Windows 10 clients. This lab focuses on:
+
+- 🧩 Identity & Access Management (IAM)
+- 🔐 Group Policy Object (GPO) configuration
+- 🖥️ Domain Workstation Management
+- 👥 Role-based access control
+- 🎨 Desktop customization by department
+
+---
+
+## 📌 Lab Overview
+
+This lab was built from scratch in **VirtualBox** and includes:
+
+- A **Windows Server 2019** Domain Controller (`lab.local`)
+- Organizational Units for `HR`, `IT`, `Finance`, and `Sales`
+- Department-based **security groups** for access management
+- **Workstations** for each department
+- **Group Policies** controlling login permissions, desktop backgrounds, and security
+- Multiple **domain users** logging into assigned computers
+
+---
+
+## 🏗️ Technologies Used
+
+- VirtualBox (Host-Only Network)
+- Windows Server 2019 (Active Directory Domain Services, DNS)
+- Windows 10 Clients
+- Group Policy Management Console (GPMC)
+- Command-line tools: `gpresult`, `ping`, `nslookup`
+- NTFS permissions and shared folders
+- Security Group–based access control
+
+---
+
+## 🧱 Domain Architecture
+
+### 🧩 Organizational Units
+
+![OU Structure](/screenshots/01-ad-ou-structure.png)
+
+### 👥 HR Users
+
+![HR OU Users](/screenshots/02-hr-ou-users.png)
+
+### 🔐 Security Groups
+
+![Security Groups](/screenshots/03-security-groups.png)
+
+### ✅ SarahB Group Membership
+
+![SarahB Groups](/screenshots/04-sarahb-group-membership.png)
+
+### 🖥️ Workstations in AD
+
+![Workstations OU](/screenshots/05-workstations-ou.png)
+
+---
+
+## 🔐 Group Policy Management
+
+### 🎯 GPO Linked to HR OU
+
+![GPO Linked](/screenshots/06-gpo-linked-to-hr.png)
+
+### ✅ Allowed to Log On Locally
+
+![Allow Logon](/screenshots/07-gpo-allow-logon-locally.png)
+
+### ❌ Deny Logon Locally (Validation)
+
+![Deny Logon](/screenshots/08-gpo-deny-logon-locally.png)
+
+---
+
+## 👩‍💼 User Logins
+
+### 🔐 SarahB Logging In
+
+![SarahB Login](/screenshots/10-sarahb-login-screen.png)
+
+### 🖥️ SarahB Desktop
+
+![SarahB Logged In](/screenshots/11-sarahb-logged-in.png)
+
+### 🔐 Daniel Logging In (IT)
+
+![Daniel Login](/screenshots/13-it-login-screen.png)
+
+### 🖥️ Daniel Desktop
+
+![Daniel Logged In](/screenshots/14-it-logged-in.png)
+
+### 🛠️ Admin on Domain Controller
+
+![Admin Server](/screenshots/12-admin-server-login.png)
+
+---
+
+## 📂 Group Policy Validation
+
+### 💡 gpresult for SarahB
+
+![GPO Results](/screenshots/15-gpresult-sarahb.png)
+
+---
+
+## 🔐 Folder Permissions by Group
+
+![Shared Folder Permissions](/screenshots/14-shared-folder-permissions.png)
+
+---
+
+## 🌐 Networking Setup
+
+### 🖧 Server IP and DNS
+
+![Server IP Config](/screenshots/16-server-network-config.png)
+
+### 📡 VirtualBox Network Adapter
+
+![VirtualBox Adapter](/screenshots/17-vm-network-settings.png)
+
+---
+
+## 🚀 What I Learned
+
+- How to install and configure Active Directory from scratch
+- Best practices in user/group security and access management
+- How to restrict or allow login access using Group Policy
+- How to simulate a full enterprise environment locally
+- How to troubleshoot DNS, domain joins, and GPO applications
+
+---
+
+## 💡 Next Steps
+
+- Add **PowerShell automation** for user creation and group assignments
+- Build a second domain and trust relationship
+- Set up **file server with auditing and logging**
 
