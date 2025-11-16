@@ -1,1 +1,20 @@
+# Group Policy Settings
 
+1. GPO Name: HR-Login-Policy
+   - Link: OU=HR
+   - Setting: Allow log on locally → hr-staff
+   - Setting: Deny log on locally → Guests
+
+2. GPO Name: IT-Login-Policy
+   - Link: OU=IT
+   - Setting: Allow log on locally → it-admins
+   - Setting: Allow Remote Desktop Login → remote-desktop-users
+
+3. GPO Name: HR-Wallpaper
+   - Link: OU=HR
+   - Setting: Desktop Wallpaper via User Configuration
+   - Path: \\labdc01\netlogon\wallpaper.jpg
+   - Enabled loopback policy processing (merge)
+
+Applied with: `gpupdate /force`
+Validated with: `gpresult /r`
