@@ -1,1 +1,27 @@
+# IP & Network Settings
 
+[Server 2019 - LABDC01]
+IP Address: 192.168.56.10
+Subnet Mask: 255.255.255.0
+Default Gateway: 192.168.56.1
+Preferred DNS: 192.168.56.10
+
+[Windows 10 Clients]
+
+HR-PC01
+- IP: 192.168.56.11
+- DNS: 192.168.56.10
+
+IT-PC01
+- IP: 192.168.56.12
+- DNS: 192.168.56.10
+
+Finance-PC01
+- IP: 192.168.56.13
+- DNS: 192.168.56.10
+
+Sales-PC01
+- IP: 192.168.56.14
+- DNS: 192.168.56.10
+
+Network Adapter Type: Host-Only Adapter (VirtualBox)
