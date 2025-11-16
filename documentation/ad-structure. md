@@ -1,1 +1,90 @@
+# 🧱 Active Directory Structure
+
+This file documents the overall **AD structure** and **user/group design** in the `lab.local` domain built for this cybersecurity lab project.
+
+---
+
+## 🏢 Organizational Units (OUs)
+
+lab.local
+├── Company
+│   ├── HR
+│   │   ├── SarahB
+│   │   └── KarenF
+│   ├── IT
+│   │   ├── DanielR
+│   │   ├── EmilyC
+│   │   └── JasonL
+│   ├── Finance
+│   │   └── EvanM
+│   └── Sales
+│       ├── MarcusJ
+│       └── LaurenW
+│
+├── Security Groups
+│   ├── hr-staff
+│   ├── it-admins
+│   ├── finance-staff
+│   ├── sales-staff
+│   ├── vpn-users
+│   └── remote-desktop-users
+│
+└── Workstations
+├── HR-Computers
+│   └── HR-PC01
+├── IT-Computers
+│   └── IT-PC01
+├── Finance-Computers
+│   └── FIN-PC01
+└── Sales-Computers
+└── SALES-PC01
+
+---
+
+## 👥 Domain Users
+
+| Username | Full Name     | Department | Assigned OU     | Group Memberships                  |
+|----------|---------------|------------|------------------|------------------------------------|
+| SarahB   | Sarah Bennett | HR         | Company/HR       | hr-staff                           |
+| KarenF   | Karen Flores  | HR         | Company/HR       | hr-staff                           |
+| DanielR  | Daniel Reyes  | IT         | Company/IT       | it-admins, vpn-users, remote-desktop-users |
+| EmilyC   | Emily Carter  | IT         | Company/IT       | it-admins                          |
+| JasonL   | Jason Lee     | IT         | Company/IT       | it-admins                          |
+| EvanM    | Evan Miller   | Finance    | Company/Finance  | finance-staff                      |
+| MarcusJ  | Marcus Johbsn | Sales      | Company/Sales    | sales-staff                        |
+| LaurenW  | Lauren White  | Sales      | Company/Sales    | sales-staff                        |
+
+---
+
+## 🔐 Security Groups & Purpose
+
+| Group Name             | Purpose                                                    |
+|------------------------|------------------------------------------------------------|
+| `hr-staff`             | Allows login to HR workstations                            |
+| `it-admins`            | Admin access and control across systems                    |
+| `finance-staff`        | Allows login to Finance workstations                       |
+| `sales-staff`          | Allows login to Sales workstations                         |
+| `vpn-users`            | Used for VPN access control via GPO or future firewall     |
+| `remote-desktop-users` | Enables remote login for designated IT personnel           |
+
+---
+
+## 🖥️ Workstation Naming Convention
+
+Each department workstation is named using:
+
+| Department | Workstation Name |
+|------------|------------------|
+| HR         | HR-PC01          |
+| IT         | IT-PC01          |
+| Finance    | FIN-PC01         |
+| Sales      | SALES-PC01       |
+
+All computers are joined to the domain `lab.local` and are located in their respective OU under `Workstations`.
+
+---
+
+## ✅ Summary
+
+This structure was designed to simulate a real-world small to mid-sized enterprise environment with separation of duties, role-based access, and centralized policy enforcement via Active Directory and Group Policy.
 
