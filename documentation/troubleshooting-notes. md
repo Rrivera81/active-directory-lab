@@ -1,1 +1,169 @@
+# 🐞 Troubleshooting Notes
+
+This file documents technical issues encountered while building the Active Directory cybersecurity lab, along with the steps taken to resolve them.
+
+---
+
+## 🧩 1. Windows Client Could Not Join the Domain
+
+**Error:**
+> "The specified domain either does not exist or could not be contacted."
+
+**Cause:**
+- Windows 10 client couldn't resolve `lab.local` due to DNS misconfiguration
+
+**Fix:**
+- Changed DNS settings on the client to point to the domain controller (192.168.56.10)
+- Verified connectivity with `ping` and `nslookup`
+- Successfully joined the domain after correction
+
+---
+
+## 🔐 2. User Couldn't Log In (Incorrect Username or Password)
+
+**Error:**
+> "The username or password is incorrect."
+
+**Cause:**
+- Password not set for user
+- Password was set to change at next login
+- Typing the wrong username format (e.g., just `SarahB` instead of `SarahB@lab.local`)
+
+**Fix:**
+- Reset password in Active Directory Users and Computers (ADUC)
+- Removed "User must change password at next login" checkbox
+- Ensured correct login format: `username@domain.local` (e.g., `SarahB@lab.local`)
+
+---
+
+## 🚫 3. “This sign-in method isn’t allowed” (Blocked by Group Policy)
+
+**Error:**
+> "The sign-in method you're trying to use isn't allowed."
+
+**Cause:**
+- Group Policy Object (GPO) was not configured to allow the user’s group to log on locally
+
+**Fix:**
+- Edited GPO under `Local Policies > User Rights Assignment`
+- Added the correct group (e.g., `hr-staff`) to **Allow log on locally**
+- Applied GPO with `gpupdate /force`
+
+---
+
+## ❌ 4. Workstation Not Showing Up in Active Directory
+
+**Error:**
+> Computer object not visible in AD
+
+**Cause:**
+- Client VM not joined to the domain
+- Improper DNS configuration
+
+**Fix:**
+- Verified VM network was set to Host-Only Adapter
+- Pointed client DNS to the server IP
+- Successfully joined domain
+- Moved the computer object to correct OU
+
+---
+
+## 🖧 5. Ping Fails Between Client and Server
+
+**Error:**
+> "Ping: Destination host unreachable" or "Request timed out"
+
+**Cause:**
+- Network adapters set to NAT instead of Host-Only
+- Firewall may be blocking ping
+- Wrong IP or subnet configuration
+
+**Fix:**
+- Switched both VMs to Host-Only Adapter
+- Set static IPs and confirmed they were on the same subnet
+- Disabled Windows Firewall temporarily to confirm connectivity
+- Used `ping` and `gpresult` to validate communication
+
+---
+
+## 🔁 6. Cloned VM Didn't Appear in AD
+
+**Issue:**
+- After cloning a Windows 10 VM, it didn’t show up in the AD OU
+
+**Cause:**
+- The cloned machine retained the same SID or didn’t rejoin the domain properly
+
+**Fix:**
+- Renamed the machine
+- Rejoined it to the domain using a domain admin account
+- Moved computer object to correct OU (`HR-Computers`, `IT-Computers`, etc.)
+
+---
+
+## 🔒 7. Local Login Works, But Domain Login Fails for a User
+
+**Error:**
+> User logs in locally but can't use domain account
+
+**Cause:**
+- GPO didn't allow that group to log on locally
+- The computer wasn't in the right OU to receive the GPO
+
+**Fix:**
+- Ensured the correct GPO was linked to the OU where the workstation resides
+- Used `gpresult /r` on the client to verify GPO application
+
+---
+
+## 🧼 8. Account Locked or Disabled
+
+**Issue:**
+- Account appeared to be locked or disabled
+
+**Cause:**
+- Multiple failed login attempts
+- Account settings in ADUC
+
+**Fix:**
+- Unlocked user in ADUC by right-clicking → Reset Password
+- Enabled the account if it was disabled
+- Tested login again successfully
+
+---
+
+## 📁 9. Shared Folder Not Accessible
+
+**Error:**
+> "Access denied" when trying to reach a shared folder
+
+**Cause:**
+- NTFS or Share permissions not assigned to the user's group
+
+**Fix:**
+- Right-clicked shared folder → Properties → Security
+- Added `hr-staff` with read/write permissions
+- Ensured folder was properly shared and accessible
+
+---
+
+## 🎨 10. GPO Background Not Applying
+
+**Issue:**
+- Desktop wallpaper did not change despite GPO settings
+
+**Cause:**
+- Network location (UNC path) was inaccessible at logon
+- GPO not enforced or not linked to the right OU
+
+**Fix:**
+- Used `gpupdate /force` and `gpresult /r` to check policy application
+- Placed wallpaper file on a local path or accessible shared folder
+- Ensured loopback policy processing was enabled (if needed)
+
+---
+
+## ✅ Summary
+
+This troubleshooting log demonstrates real-world problem-solving skills applied while setting up an enterprise-grade Active Directory environment in a virtual lab. It reflects an ability to diagnose, document, and resolve network, domain, and user-level issues confidently.
 
