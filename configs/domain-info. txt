@@ -1,1 +1,15 @@
+# Domain Information
 
+Domain Name: lab.local
+NetBIOS Name: LAB
+Forest Name: lab.local
+Domain Controller Hostname: LABDC01
+Primary DNS Server: 192.168.56.10
+Admin Account: Administrator@lab.local
+Default OU Structure:
+  - Company
+  - Workstations
+  - Security Groups
+
+Time Zone: (Eastern Standard Time)
+Domain Functional Level: Windows Server 2016
